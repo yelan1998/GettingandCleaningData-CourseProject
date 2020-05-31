@@ -13,18 +13,37 @@ The experiments have been carried out with a group of 30 volunteers within an ag
   5. `y_test.txt` and `y_train.txt`: contains the corresponding activity labels of test data and trained data.
   
 ## Steps to Clean up this Data Set
-  ### 1. Read each txt file and assign the data to different variables:
-    * feature <- features.txt
-    * activity <- activity_label.txt
-    * subject_test <- subject_test.txt
-    * X_test <- X_test.txt
-    * test_label <- y_test.txt
-    * subject_train <- subject_train.txt
-    * X_train <- X_train.txt
-    * train_label <- y_train.txt
-  ### 2. Merge the training and test data sets to create on data set
-    * X_features is created by merging X_test and X_train
-    * activityLabel is created by merging test_label and train_label
-    * subject is created by merging subject_test and subject_train
-    * StepTwoData is the data set after executing the first goal of this project, which is created by merging X_features, activityLabel and subject.
-  ### 3. 
+  ### Preparing Step: Read each txt file and assign the data to different variables:
+    * Variable 'feature' <- features.txt
+    * Variable 'activity' <- activity_label.txt
+    * Variable 'subject_test' <- subject_test.txt
+    * Variable 'X_test' <- X_test.txt
+    * Variable 'test_label' <- y_test.txt
+    * Variable 'subject_train' <- subject_train.txt
+    * Variable 'X_train' <- X_train.txt
+    * Variable 'train_label' <- y_train.txt
+  ### Step 1: Merge the training and test data sets to create on data set
+    * Variable 'X_features' is created by merging 'X_test' and 'X_train'
+    * Variable 'activityLabel' is created by merging 'test_label' and 'train_label'
+    * Variable 'subject' is created by merging 'subject_test' and 'subject_train'
+    * Data Frame 'StepOneData' is the data set after executing the first goal of this project, which is created by merging 'X_features', 'activityLabel' and 'subject'.
+  ### Step 2: Extract only the measurements on the mean and standard deviation for each measurement
+    * Data Frame 'StepTwoData' is created by slecting the subset that only contains columns 'subject','label' and features with measurements on the (mean) and (std) for each measurement.
+  ### Step 3: Use descriptive activity names to name the activities in the data set
+    * In 'StepTwoData', replace the activity label numbers in 'label' column by the corresponding activity names, according to the variable 'activity' created in Step 1.
+  ### Step 4: Appropriately label the data set with descriptive variable names
+    * Using the name function, the name of each column can be easily found. 
+    * All substring 'ACC' changed to 'Accelerometer'
+    * All substring 'Gyro' changed to 'Gyroscope'
+    * All substring 'BodyBody' changed to 'Body'
+    * All substring 'Mag' changed to 'Magnitude'
+    * All substring '^t' changed to 'Time'
+    * All substring '^f' and '-freq' changed to 'Frequency'
+    * All substring 'tBody' changed to 'TimeBody'
+    * All substring '-mean()' changed to 'Mean'
+    * All substring '-std()' changed to 'STD'
+    * All substring 'angle' changed to 'Angle'
+    * All substring 'gravity' changed to 'Gravity'
+  ### Step 5: From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject
+    * Data Frame 'FinalData' is created by first grouping the subject and activity, then taking the means of each variable for each activity and each subject, and finally reordering the data frame from the 'StepTwoData'
+    * Write this Data Frame into the file 'FinalData.txt'.
